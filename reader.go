@@ -6,12 +6,13 @@ import (
 	"compress/zlib"
 	"encoding/binary"
 	"fmt"
-	"github.com/pkg/errors"
 	"io"
 	"io/ioutil"
 	"math"
 	"os"
 	"strconv"
+
+	"github.com/pkg/errors"
 )
 
 type PdfReader struct {
@@ -66,6 +67,10 @@ func NewPdfReader(filename string) (*PdfReader, error) {
 	}
 
 	return parser, nil
+}
+
+func (this *PdfReader) NumPages() int {
+	return len(this.pages)
 }
 
 func (this *PdfReader) init() error {
